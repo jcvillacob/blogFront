@@ -1,0 +1,12 @@
+<div class="faq-container">
+    <h2>Preguntas Frecuentes</h2>
+    <div *ngFor="let faq of faqs" class="faq">
+        <p class="question" (click)="toggleAnswer(faq)">
+            <span>{{ faq.question }}</span>
+            <span class="arrow" [ngClass]="{'rotated': faq.showAnswer}">&#9654;</span>
+        </p>
+        <div class="answer" *ngIf="faq.showAnswer">
+            <p>{{ faq.answer }}</p>
+        </div>
+    </div>
+</div>

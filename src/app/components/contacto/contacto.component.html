@@ -1,0 +1,37 @@
+<div class="contacto-container">
+    <h2>Contáctenos</h2>
+    <p>Somos una empresa dedicada a brindar soluciones innovadoras y de calidad a nuestros clientes. Si tienes alguna
+        pregunta, comentario o sugerencia, no dudes en ponerte en contacto con nosotros utilizando el siguiente
+        formulario:</p>
+
+    <form (submit)="enviarFormulario()" class="contacto-form">
+        <div class="form-group">
+            <label for="nombre"><i class="fas fa-user"></i> Nombre:</label>
+            <input type="text" id="nombre" [(ngModel)]="contacto.nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Correo electrónico:</label>
+            <input type="email" id="email" [(ngModel)]="contacto.email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="asunto"><i class="fas fa-tag"></i> Asunto:</label>
+            <input type="text" id="asunto" [(ngModel)]="contacto.asunto" name="asunto" required>
+        </div>
+
+        <div class="form-group">
+            <label for="mensaje"><i class="fas fa-comment"></i> Mensaje:</label>
+            <textarea id="mensaje" [(ngModel)]="contacto.mensaje" name="mensaje" required></textarea>
+        </div>
+
+        <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
+    </form>
+
+    <div class="social-media">
+        <a href="#" class="icon"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="icon"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>

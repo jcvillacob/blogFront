@@ -1,0 +1,108 @@
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 1rem;
+    color: #2c3e50;
+}
+
+.intro {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #34495e;
+}
+
+section {
+    margin-bottom: 3rem;
+    margin-top: 150px;
+}
+
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.articles,
+.bloggers,
+.blogs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.article-card,
+.blogger-card,
+.blog-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.article-card:hover,
+.blogger-card:hover,
+.blog-card:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.article-card img,
+.blogger-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.article-card h3,
+.blogger-card h3,
+.blog-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.article-card p,
+.blogger-card p,
+.blog-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.article-card a,
+.blogger-card a,
+.blog-card a {
+    display: inline-block;
+    background-color: #3498db;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.article-card a:hover,
+.blogger-card a:hover,
+.blog-card a:hover {
+    background-color: #2980b9;
+}

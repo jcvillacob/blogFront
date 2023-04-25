@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Blogs</h1>
+
+    <div class="filters">
+        <input [(ngModel)]="searchTitle" (input)="filterPosts()" type="text" placeholder="Buscar por título..."
+            class="search-title">
+        <select [(ngModel)]="selectedAuthor" (change)="filterPosts()" class="search-author">
+            <option value="">Filtrar por autor...</option>
+            <option *ngFor="let author of authors" [value]="author.id">{{author.name}}</option>
+        </select>
+        <select [(ngModel)]="selectedCategory" (change)="filterPosts()" class="search-category">
+            <option value="">Filtrar por categoría...</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+    </div>
+
+    <div class="posts">
+        <div *ngFor="let post of filteredPosts" class="post">
+            <h2>{{post.title}}</h2>
+            <p>{{post.content}}</p>
+            <p><strong>Autor:</strong> {{post.author.name}}</p>
+            <p><strong>Categoría:</strong> {{post.category.name}}</p>
+            <p><strong>Tags:</strong> {{post.tags.join(', ')}}</p>
+            <p><strong>Fecha de creación:</strong> {{post.createdAt | date:'medium'}}</p>
+            <p><strong>Última actualización:</strong> {{post.updatedAt | date:'medium'}}</p>
+        </div>
+    </div>
+</div>
