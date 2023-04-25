@@ -6,11 +6,11 @@
             class="search-title">
         <select [(ngModel)]="selectedAuthor" (change)="filterPosts()" class="search-author">
             <option value="">Filtrar por autor...</option>
-            <option *ngFor="let author of authors" [value]="author.id">{{author.name}}</option>
+            <option *ngFor="let author of authors" [value]="author._id">{{author.name}}</option>
         </select>
         <select [(ngModel)]="selectedCategory" (change)="filterPosts()" class="search-category">
             <option value="">Filtrar por categoría...</option>
-            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
         </select>
     </div>
 

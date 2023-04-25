@@ -4,7 +4,7 @@ export interface User {
     email: string;
     password?: string;
     role: UserRole;
-    createdAt: Date;
+    createdAt?: Date;
     __v?: number;
 }
 
