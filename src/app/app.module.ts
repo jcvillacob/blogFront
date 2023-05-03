@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 /* Servicios */
 import { CategoryService } from './services/category.service';
@@ -17,6 +18,8 @@ import { BlogsComponent } from './components/blogs/blogs.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { BlogIComponent } from './components/blog-i/blog-i.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -26,18 +29,21 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     BlogsComponent,
     FaqComponent,
     BlogIComponent,
-    ContactoComponent
+    ContactoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     CategoryService,
     UserService,
     PostService,
-    CommentService
+    CommentService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

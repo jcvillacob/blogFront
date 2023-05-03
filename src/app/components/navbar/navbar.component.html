@@ -14,13 +14,13 @@
             <li class="nav-item"><a href="blogs">Blogs</a></li>
             <li class="nav-item"><a href="contacto">Contáctanos</a></li>
             <li class="nav-item"><a href="faq">FAQ</a></li>
-            <li class="nav-item">
-                <button class="login-btn"><a href="#">Iniciar sesión</a></button>
+            <li class="nav-item" *ngIf="isAuthenticated"><a href="faq">Autores</a></li>
+            <li class="nav-item" *ngIf="!isAuthenticated">
+                <button class="login-btn"><a href="login">Iniciar sesión</a></button>
             </li>
-            <!-- <li class="nav-item"><a href="#">Clientes</a></li>
-            <li class="nav-item">
-                <button class="login-btn"><a href="#">Cerrar sesión</a></button>
-            </li> -->
+            <li class="nav-item" *ngIf="isAuthenticated">
+                <button class="login-btn" (click)="logout()"><a>Cerrar sesión</a></button>
+            </li>
         </ul>
     </nav>
 </div>

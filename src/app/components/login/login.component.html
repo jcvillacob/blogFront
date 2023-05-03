@@ -1,0 +1,17 @@
+<div class="boxer">
+    <div class="box">
+        <h2>Login</h2>
+        <form (submit)="onSubmit()">
+            <div class="inputBox">
+                <input type="email" name="Username" [(ngModel)]="emailValue" placeholder="Email" />
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" [(ngModel)]="passwordValue"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    placeholder="Password" />
+            </div>
+            <input type="submit" name="sign-in" value="Inicia Sesión" />
+        </form>
+    </div>
+</div>

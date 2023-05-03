@@ -1,0 +1,172 @@
+.boxer {
+    margin: 0;
+    padding: 0;
+    height: 90vh;
+    background-image: url('https://th.bing.com/th/id/OIG.2IqgQun0e5R8jN5Ll0IZ?pid=ImgGn');
+    background-size: cover;
+    font-family: "Lato", "Arial", sans-serif;
+    background-position: center center;
+}
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25rem;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    background: #1a2a4ead;
+    border-radius: 0.625rem;
+    backdrop-filter: blur(2px);
+}
+
+.box>* {
+    /* Añade esto para asegurarte de que los elementos hijos de la clase .box no hereden el efecto blur */
+    backdrop-filter: none;
+}
+
+.box h2 {
+    margin: 0 0 1.875rem;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.box .inputBox {
+    position: relative;
+}
+
+.box .inputBox input {
+    width: 100%;
+    padding: 0.825rem 0;
+    font-size: 1rem;
+    color: #fff;
+    letter-spacing: 0.062rem;
+    margin-bottom: 1.875rem;
+    border: none;
+    border-bottom: 0.065rem solid #fff;
+    outline: none;
+    background: transparent;
+    transition: 0.5s;
+}
+
+
+.box .inputBox input::placeholder {
+    color: #fff;
+    opacity: 1;
+    font-size: 1rem;
+    transition: all 0.5s;
+}
+
+.box .inputBox input:focus::placeholder {
+    opacity: 0;
+    font-size: 0.75rem;
+    transform: translateY(-1.125rem);
+}
+
+.box .inputBox input:focus::placeholder {
+    opacity: 0;
+    transition: 0s 0.5s;
+    /* Añade esta línea para evitar que el placeholder se muestre de nuevo al perder el foco */
+}
+
+.box .inputBox input:focus::-webkit-input-placeholder {
+    transform: translateY(-1.125rem);
+    font-size: 0.75rem;
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+.box .inputBox input:focus::-moz-placeholder {
+    transform: translateY(-1.125rem);
+    font-size: 0.75rem;
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+.box .inputBox input:focus::-ms-input-placeholder {
+    transform: translateY(-1.125rem);
+    font-size: 0.75rem;
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+.box .inputBox input:focus::placeholder {
+    transform: translateY(-1.125rem);
+    font-size: 0.75rem;
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+
+.box .inputBox label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.box .inputBox input:focus~label,
+.box .inputBox input:valid~label,
+.box .inputBox input:not([value=""])~label {
+    top: -1.125rem;
+    left: 0;
+    color: #fff;
+    font-size: 0.75rem;
+}
+
+.box input[type="submit"] {
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #1a2a4e;
+    padding: 0.625rem 1.25rem;
+    cursor: pointer;
+    border-radius: 0.312rem;
+    font-size: 1rem;
+}
+
+.box input[type="submit"]:hover {
+    background-color: #1a2a4e;
+}
+
+.box input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+}
+
+.box>button {
+    backdrop-filter: none;
+}
+
+
+/* Añade esto al final del archivo login.component.css */
+
+@media (max-width: 767px) {
+    .box {
+        width: 90%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .box {
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .box {
+        width: 35%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .box {
+        width: 25rem;
+    }
+}

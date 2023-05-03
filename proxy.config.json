@@ -1,0 +1,19 @@
+{
+    "/posts": {
+      "target": "http://localhost:4000",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/posts": "/posts"
+      }
+    },
+    "/login": {
+      "target": "http://localhost:4000",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "/login": "/login"
+      }
+    }
+  }
+  
