@@ -65,7 +65,12 @@ export class AuthService {
       return true;
     }
     const currentTime = new Date().getTime();
-    return currentTime >= Number(expiration);
+    const expired = currentTime >= Number(expiration);
+    if (expired){
+      localStorage.removeItem('token');
+      localStorage.removeItem('token_expiration');
+    }
+    return expired;
   }
 
 
