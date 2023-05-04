@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   menuOpen: boolean = false;
+  userRole: string | null = null;
   isAuthenticated: boolean = false;
   authSubscription: Subscription = new Subscription(); // Inicializa la propiedad con un valor predeterminado
 
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
     this.authSubscription = this.authService.isAuthenticated$.subscribe(
       isAuthenticated => {
         this.isAuthenticated = isAuthenticated;
+        this.userRole = this.authService.getUserRole();
       }
     );
   }

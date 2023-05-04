@@ -1,0 +1,45 @@
+<div class="container">
+  <h2>Autores</h2>
+  <button (click)="crearNuevaEntrada()" class="btn btn-primary mb-4">
+    Crear nueva entrada
+  </button>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Mis Noticias</h3>
+      <div *ngFor="let noticia of noticias; index as i">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ noticia.titulo }}</h5>
+            <button (click)="editarNoticia(i)" class="btn btn-success me-2">
+              Editar
+            </button>
+            <button (click)="eliminarNoticia(i)" class="btn btn-danger">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Mis Posts</h3>
+      <div *ngFor="let post of posts; index as i">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <h6 class="card-title">{{ post.createdAt }}</h6>
+            <h6 class="card-title">{{ post.category.name }}</h6>
+            <h6 class="card-title">{{ post.tags }}</h6>
+            <button (click)="editarPost(i)" class="btn btn-success me-2">
+              Editar
+            </button>
+            <button (click)="eliminarPost(i)" class="btn btn-danger">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

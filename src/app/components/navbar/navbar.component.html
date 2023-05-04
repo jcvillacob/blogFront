@@ -14,7 +14,9 @@
             <li class="nav-item"><a href="blogs">Blogs</a></li>
             <li class="nav-item"><a href="contacto">Contáctanos</a></li>
             <li class="nav-item"><a href="faq">FAQ</a></li>
-            <li class="nav-item" *ngIf="isAuthenticated"><a href="faq">Autores</a></li>
+            <li class="nav-item" *ngIf="isAuthenticated && (userRole === 'Admin' || userRole === 'Author')">
+                <a href="autores">Autores</a>
+              </li>
             <li class="nav-item" *ngIf="!isAuthenticated">
                 <button class="login-btn"><a href="login">Iniciar sesión</a></button>
             </li>

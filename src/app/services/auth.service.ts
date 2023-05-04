@@ -80,4 +80,17 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('token_expiration');
   }
+
+  getUserRole(): string | null {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+    try {
+      const decodedToken = jwt_decode<TokenPayload>(token);
+      return decodedToken.role;
+    } catch (error) {
+      return null;
+    }
+  }
 }

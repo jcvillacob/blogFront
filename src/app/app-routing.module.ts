@@ -5,6 +5,7 @@ import { FaqComponent } from './components/faq/faq.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { LoginComponent } from './components/login/login.component';
+import { AutoresComponent } from './components/autores/autores.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "/home", pathMatch: "full" },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'blogs', component: BlogsComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'autores', component: AutoresComponent },
   { path: '**', redirectTo: "/home", pathMatch: "full" },
 ];
 

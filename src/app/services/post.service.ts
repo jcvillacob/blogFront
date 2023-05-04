@@ -20,6 +20,10 @@ export class PostService {
     return this.http.get<Post>(`${this.apiUrl}/${id}`);
   }
 
+  getSelfPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.apiUrl + "/me");
+  }
+
   createPost(post: Post): Observable<Post> {
     return this.http.post<Post>(this.apiUrl, post);
   }

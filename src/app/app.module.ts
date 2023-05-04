@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 /* Servicios */
 import { CategoryService } from './services/category.service';
@@ -20,6 +20,8 @@ import { BlogIComponent } from './components/blog-i/blog-i.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
+import { AutoresComponent } from './components/autores/autores.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { AuthService } from './services/auth.service';
     FaqComponent,
     BlogIComponent,
     ContactoComponent,
-    LoginComponent
+    LoginComponent,
+    AutoresComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,12 @@ import { AuthService } from './services/auth.service';
     UserService,
     PostService,
     CommentService,
-    AuthService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })
