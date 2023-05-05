@@ -73,7 +73,6 @@ export class AuthService {
     return expired;
   }
 
-
   logout(): void {
     this.token = '';
     this.isAuthenticatedSubject.next(false);
@@ -89,6 +88,19 @@ export class AuthService {
     try {
       const decodedToken = jwt_decode<TokenPayload>(token);
       return decodedToken.role;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  getUserId(): string | null {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+    try {
+      const decodedToken = jwt_decode<TokenPayload>(token);
+      return decodedToken.userId;
     } catch (error) {
       return null;
     }

@@ -1,1 +1,96 @@
-<p>blog-i works!</p>
+<div class="container" *ngIf="post">
+  <div class="post">
+
+    <div class="post-header">
+      <h1 class="post-title">{{ post.title }}</h1>
+      <div class="post-meta">
+        <span class="post-category">{{ post.category.name }}</span>
+        <span class="post-tags">{{ post.tags.join(", ") }}</span>
+      </div>
+    </div>
+
+    <div class="post-author">
+      <span>Por {{ post.author.name }}</span>
+    </div>
+    <div class="post-content">
+      <p [innerHTML]="post.content"></p>
+    </div>
+
+    <div class="post-footer">
+      <div class="post-dates">
+        <span
+          ><strong>Fecha de creación:</strong>
+          {{ post.createdAt | date : "dd-MMMM-yyyy" }}</span
+        >
+        <span
+          ><strong>Última actualización:</strong>
+          {{ post.updatedAt | date : "dd-MMMM-yyyy" }}</span
+        >
+      </div>
+    </div>
+
+  </div>
+  <a routerLink="/blogs" class="back-to-posts">Volver a los blogs</a>
+</div>
+
+<!-- Añade este código al final del archivo -->
+<div class="comments-section" *ngIf="comments.length > 0">
+  <h2>Comentarios</h2>
+  <div class="comment" *ngFor="let comment of comments">
+    <div class="comment-header">
+      <h4>{{ comment.author?.name }}</h4>
+      <span class="comment-date">{{
+        comment.createdAt | date : "dd/MM/yyyy"
+      }}</span>
+    </div>
+
+
+    <div *ngIf="!comment.editing">
+      <p>{{ comment.content }}</p>
+    </div>
+
+    <div *ngIf="comment.editing">
+      <form (ngSubmit)="updateComment(comment)" #editCommentForm="ngForm" class="editing-form">
+        <textarea
+          [(ngModel)]="comment.content"
+          name="content"
+          placeholder="Comentario"
+          required
+        ></textarea>
+        <div class="editing-form-buttons">
+          <button class="editing-btn check" type="submit" [disabled]="!editCommentForm.valid"><i class="fa-solid fa-check"></i></button>
+          <button class="editing-btn cancel" type="button" (click)="cancelEdit(comment)"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </form>
+
+    </div>
+    
+
+    <div
+    *ngIf="comment.author?._id && (userId === comment.author?._id || userRole === 'Admin')"
+      class="comment-actions"
+    >
+      <button class="edit-btn" (click)="editComment(comment)">
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+      <button class="delete-btn" (click)="deleteComment(comment._id)">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="new-comment-form">
+  <h2>Deja un comentario</h2>
+  <form (ngSubmit)="submitComment()" #commentForm="ngForm">
+    <textarea
+      [(ngModel)]="newComment.content"
+      name="content"
+      placeholder="Comentario"
+      required
+    ></textarea>
+    <button type="submit" [disabled]="!commentForm.valid">Comentar</button>
+  </form>
+</div>

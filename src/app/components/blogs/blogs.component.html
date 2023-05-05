@@ -2,27 +2,33 @@
     <h1>Blogs</h1>
 
     <div class="filters">
-        <input [(ngModel)]="searchTitle" (input)="filterPosts()" type="text" placeholder="Buscar por título..."
+        <input [(ngModel)]="searchTitle" (input)="filterPosts()" type="text" placeholder="Título..."
             class="search-title">
         <select [(ngModel)]="selectedAuthor" (change)="filterPosts()" class="search-author">
-            <option value="">Filtrar por autor...</option>
+            <option value="">Autor...</option>
             <option *ngFor="let author of authors" [value]="author._id">{{author.name}}</option>
         </select>
         <select [(ngModel)]="selectedCategory" (change)="filterPosts()" class="search-category">
-            <option value="">Filtrar por categoría...</option>
+            <option value="">Categoría...</option>
             <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
         </select>
     </div>
 
     <div class="posts">
         <div *ngFor="let post of filteredPosts" class="post">
-            <h2>{{post.title}}</h2>
-            <p>{{post.content}}</p>
-            <p><strong>Autor:</strong> {{post.author.name}}</p>
-            <p><strong>Categoría:</strong> {{post.category.name}}</p>
-            <p><strong>Tags:</strong> {{post.tags.join(', ')}}</p>
-            <p><strong>Fecha de creación:</strong> {{post.createdAt | date:'medium'}}</p>
-            <p><strong>Última actualización:</strong> {{post.updatedAt | date:'medium'}}</p>
+            <div class="post-header">
+                <h2>{{post.title}}</h2>
+                
+            </div>
+            <p>{{post.content.slice(0, 150)}}{{post.content.length > 150 ? '...' : ''}}</p>
+            <div class="post-footer">
+                <div class="post-info">
+                    <span class="post-author">{{post.author.name}}</span>
+                    <span class="post-category">{{post.category.name}}</span>
+                </div>
+                <a [routerLink]="['/blog-i', post._id]" class="view-post">Ver post</a>
+            </div>
+            <p class="post-date">{{post.createdAt | date:'dd-MMMM-yyyy'}}</p>
         </div>
     </div>
 </div>

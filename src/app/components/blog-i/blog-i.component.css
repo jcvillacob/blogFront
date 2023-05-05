@@ -1,0 +1,367 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.post {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.post-header {
+    margin-bottom: 1rem;
+}
+
+.post-title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.post-meta span {
+    margin: 0 0.5rem;
+}
+
+.post-category {
+    font-weight: 600;
+}
+
+.post-author {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.post-content {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: left;
+}
+
+.post-footer {
+    font-size: 0.9rem;
+    color: #777;
+    text-align: left;
+}
+
+.post-dates {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.back-to-posts {
+    display: inline-block;
+    text-decoration: none;
+    color: #007bff;
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.back-to-posts:hover {
+    text-decoration: underline;
+}
+
+
+div a {
+    color: #1a2a4e;
+    text-decoration: none;
+}
+
+
+/* Añade este código al final del archivo */
+.comments-section {
+    font-family: Arial, sans-serif;
+    width: 90%;
+    margin: 3rem auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.comment {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.comment h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.comment-date {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.new-comment-form {
+    margin-top: 2rem;
+    font-family: Arial, sans-serif;
+    width: 95%;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 150px;
+}
+
+.new-comment-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-comment-form textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 100px;
+    resize: none;
+}
+
+.new-comment-form button {
+    background-color: #1a2a4e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.new-comment-form button:disabled {
+    opacity: 0.5;
+    /* reduce la opacidad del botón para que parezca oscuro */
+    cursor: not-allowed;
+    /* cambia el cursor para indicar que no se puede hacer clic en el botón */
+}
+
+.new-comment-form button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+/* ////////////////////////////////////////// */
+.comment-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.edit-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    transition: color 0.3s;
+    color: #1a2a4e;
+    /* color azul para el botón editar */
+}
+
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    transition: color 0.3s;
+    color: #ff0000;
+    /* color rojo para el botón eliminar */
+    margin-left: 0.5rem;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    color: #1a2a4e;
+}
+
+.delete-btn {
+    margin-left: 0.5rem;
+}
+
+
+
+.editing-form {
+    background-color: #f3f3f3;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.editing-form textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.editing-form button {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.editing-form button:hover {
+    background-color: #0056b3;
+}
+
+.editing-form-buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.editing-form button.cancel {
+    background-color: #f44336;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.editing-form button.cancel:hover {
+    background-color: #d32f2f;
+}
+
+.editing-btn.check {
+    background-color: green;
+}
+.editing-btn.cancel {
+    background-color: #d32f2f;
+}
+
+
+
+
+
+
+
+
+/* Estilos responsivos */
+
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .post-title {
+        font-size: 2.5rem;
+    }
+
+    .post-meta {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .post-meta span {
+        margin: 0.5rem 0;
+    }
+
+    .post-author {
+        font-size: 1rem;
+    }
+
+    .post-content {
+        font-size: 1.1rem;
+    }
+
+    .comment h4 {
+        font-size: 1.1rem;
+    }
+
+    .comment-date {
+        font-size: 0.7rem;
+    }
+
+    .new-comment-form textarea {
+        height: 80px;
+    }
+
+
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-meta {
+        font-size: 0.9rem;
+    }
+
+    .post-author {
+        font-size: 0.9rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+
+    .comment h4 {
+        font-size: 1rem;
+    }
+
+    .comment-date {
+        font-size: 0.6rem;
+    }
+
+    .new-comment-form textarea {
+        height: 60px;
+    }
+}

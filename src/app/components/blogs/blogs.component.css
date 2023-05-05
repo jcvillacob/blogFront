@@ -47,18 +47,21 @@ h1 {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.post {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    transition: all 0.3s;
-    border-radius: 5px;
-    background-color: #f8f8f8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+.posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1rem;
 }
 
-.post:last-child {
-    border-bottom: none;
+.post {
+    padding: 1rem;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .post:hover {
@@ -66,20 +69,119 @@ h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
 h2 {
     font-weight: 500;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
     color: #333;
+    margin: 0;
+}
+
+.post-date {
+    font-size: 0.8rem;
+    color: #999;
 }
 
 p {
     font-size: 0.9rem;
     line-height: 1.4;
     color: #333;
+    margin: 0;
 }
 
-strong {
-    font-weight: 600;
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.post-info {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.post-footer a {
+    background-color: #1a2a4e;
+    color: #fff;
+}
+
+.post-footer a:hover {
+    background-color: #2a4177;
+    color: #fff;
+}
+
+.post-author,
+.post-category {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.view-post {
     color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 1px solid #333;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.view-post:hover {
+    color: #fff;
+    background-color: #333;
+}
+
+/* Añade esto al final del archivo CSS existente */
+@media (max-width: 991px) {
+    .filters {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .search-title,
+    .search-author,
+    .search-category {
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .posts {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .posts {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
 }

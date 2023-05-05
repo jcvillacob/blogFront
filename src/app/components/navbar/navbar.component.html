@@ -14,7 +14,7 @@
             <li class="nav-item"><a href="blogs">Blogs</a></li>
             <li class="nav-item"><a href="contacto">Contáctanos</a></li>
             <li class="nav-item"><a href="faq">FAQ</a></li>
-            <li class="nav-item" *ngIf="isAuthenticated && (userRole === 'Admin' || userRole === 'Author')">
+            <li class="nav-item" *ngIf="isAuthenticated && (userRole === 'Admin' || userRole === 'author')">
                 <a href="autores">Autores</a>
               </li>
             <li class="nav-item" *ngIf="!isAuthenticated">

@@ -42,7 +42,6 @@ export class BlogsComponent implements OnInit {
       this.categoryService.getCategories().subscribe(categories => {
         this.categories = categories.filter(category => categoryIds.has(category._id));
       });
-      console.log(this.categories)
     });
   }
 
