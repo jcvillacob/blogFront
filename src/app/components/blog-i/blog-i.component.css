@@ -5,6 +5,35 @@
     text-align: center;
 }
 
+/* Estilos para el botón de retroceder y el selector de tipo de entrada */
+.back-button {
+    font-size: 18px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s;
+    position: fixed;
+    left: 100px;
+}
+
+.back-button {
+    background-color: transparent;
+    color: #1a2a4e;
+}
+
+.back-button:hover {
+    background-color: #1a2a4e;
+    color: #fff;
+}
+
+
+
+
+
+
+
 .post {
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -293,13 +322,17 @@ div a {
         width: 95%;
     }
 
+    .back-button {
+        left: 50px;
+    }
+
     .post-title {
         font-size: 2.5rem;
     }
 
     .post-meta {
         flex-direction: column;
-        align-items: center;
+        align-items: start;
         margin-bottom: 1.5rem;
     }
 
@@ -335,6 +368,10 @@ div a {
         width: 95%;
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .back-button {
+        display: none;
     }
 
     .post-title {

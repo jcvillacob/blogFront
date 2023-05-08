@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AutoresComponent } from './components/autores/autores.component';
 import { RoleGuard } from './services/role.guard';
 import { BlogIComponent } from './components/blog-i/blog-i.component';
+import { EntradaComponent } from './components/autores/entrada/entrada.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "/home", pathMatch: "full" },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'autores', component: AutoresComponent, canActivate: [RoleGuard] },
+  { path: 'autores/entrada', component: EntradaComponent, canActivate: [RoleGuard] },
   { path: '**', redirectTo: "/home", pathMatch: "full" },
 ];
 

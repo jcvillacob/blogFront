@@ -1,4 +1,8 @@
 <div class="container" *ngIf="post">
+
+  <button class="back-button" (click)="goBack()">
+    <i class="fa fa-arrow-left"></i>
+  </button>
   <div class="post">
 
     <div class="post-header">
@@ -46,7 +50,7 @@
 
 
     <div *ngIf="!comment.editing">
-      <p>{{ comment.content }}</p>
+      <p [innerHTML]="comment.content"></p>
     </div>
 
     <div *ngIf="comment.editing">

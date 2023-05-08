@@ -1,0 +1,204 @@
+/* Estilos para el encabezado */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+/* Estilos para el botón de retroceder y el selector de tipo de entrada */
+.back-button,
+.header select {
+    font-size: 18px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.back-button {
+    background-color: transparent;
+    color: #1a2a4e;
+}
+
+.back-button:hover {
+    background-color: #1a2a4e;
+    color: #fff;
+}
+
+/* Estilos para el selector de tipo de entrada */
+.header select {
+    background-color: white;
+    width: 50%;
+}
+
+.header select:focus {
+    border-color: #1a2a4e;
+    box-shadow: 0 0 3px rgba(0, 115, 230, 0.4);
+}
+
+
+
+
+/* Estilos para el resto */
+body {
+    font-family: Arial, sans-serif;
+}
+
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 200px;
+}
+
+form>div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.fa {
+    margin-right: 8px;
+}
+
+input,
+textarea,
+select {
+    font-size: 18px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #1a2a4e;
+    box-shadow: 0 0 3px rgba(0, 115, 230, 0.4);
+}
+
+textarea {
+    resize: none;
+    min-height: 200px;
+}
+
+button {
+    font-size: 18px;
+    padding: 12px;
+    background-color: #1a2a4e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1a2a4e;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+form button {
+    margin-top: 2rem;
+}
+
+/* Estilos para los tags */
+form>div[formArrayName="tags"] {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+form>div[formArrayName="tags"]>input {
+    width: auto;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .content {
+        width: 90%;
+        margin: auto;
+    }
+
+    .header {
+        flex-wrap: wrap;
+        /* Ajustar el encabezado para múltiples líneas */
+    }
+
+    .header select {
+        font-size: 16px;
+        /* Reducir el tamaño de fuente */
+        max-width: 100%;
+        /* Establecer el ancho máximo al 100% */
+    }
+
+    form>div {
+        font-size: 16px;
+        /* Reducir el tamaño de fuente */
+    }
+
+    input,
+    textarea,
+    select {
+        font-size: 16px;
+        /* Reducir el tamaño de fuente */
+        max-width: 100%;
+        /* Establecer el ancho máximo al 100% */
+    }
+
+    form>div[formArrayName="tags"]>input {
+        max-width: none;
+        /* Permitir que los tags se ajusten al ancho disponible */
+    }
+}
+
+
+
+
+/* Estilos para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        /* Ajustar el encabezado para una sola columna */
+        align-items: flex-start;
+        /* Alinear los elementos a la izquierda */
+    }
+
+    .back-button {
+        margin-bottom: 12px;
+        /* Agregar espacio entre el botón y el selector */
+    }
+
+    form>div[formArrayName="tags"] {
+        flex-wrap: wrap;
+        /* Permitir que los tags se ajusten al ancho disponible */
+    }
+
+    form>div[formArrayName="tags"]>input {
+        margin-right: 0;
+        /* Eliminar el margen derecho */
+        margin-bottom: 8px;
+        /* Agregar espacio entre los tags */
+    }
+}

@@ -1,0 +1,47 @@
+<div class="content">
+  <div class="header">
+    <button class="back-button" (click)="goBack()">
+      <i class="fa fa-arrow-left"></i> Retroceder
+    </button>
+    <label for="entryType">Tipo de Entrada</label>
+    <select id="entryType" [(ngModel)]="entryType">
+      <option value="Noticia">Noticia</option>
+      <option value="Post">Post</option>
+    </select>
+  </div>
+
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title"><i class="fa fa-heading"></i> Título</label>
+      <input type="text" id="title" formControlName="title" />
+    </div>
+
+    <div>
+      <label for="content"><i class="fa fa-pencil-alt"></i> Contenido</label>
+      <textarea
+        id="content"
+        formControlName="content"
+        (input)="adjustTextareaHeight($event)"
+      ></textarea>
+    </div>
+
+    <div>
+      <label for="category"><i class="fa fa-tags"></i> Categoría</label>
+      <select id="category" formControlName="category">
+        <option *ngFor="let category of categories" [value]="category._id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+
+    <div formArrayName="tags">
+      <label><i class="fa fa-tag"></i> Tags</label>
+      <div *ngFor="let tag of tags.controls; index as i">
+        <input type="text" [formControlName]="i" />
+      </div>
+      <button (click)="addTag()" type="button">Añadir Tag</button>
+    </div>
+
+    <button type="submit" [disabled]="!postForm.valid">Enviar</button>
+  </form>
+</div>

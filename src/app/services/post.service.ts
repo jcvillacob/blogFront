@@ -28,8 +28,8 @@ export class PostService {
     return this.http.post<Post>(this.apiUrl, post);
   }
 
-  updatePost(post: Post): Observable<Post> {
-    return this.http.put<Post>(`${this.apiUrl}/${post._id}`, post);
+  updatePost(id: string ,post: Post): Observable<Post> {
+    return this.http.put<Post>(`${this.apiUrl}/${id}`, post);
   }
 
   deletePost(id: string): Observable<void> {

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 /* Servicios */
 import { CategoryService } from './services/category.service';
@@ -22,6 +23,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { AutoresComponent } from './components/autores/autores.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { EntradaComponent } from './components/autores/entrada/entrada.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +35,15 @@ import { AuthInterceptor } from './auth.interceptor';
     BlogIComponent,
     ContactoComponent,
     LoginComponent,
-    AutoresComponent
+    AutoresComponent,
+    EntradaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     CategoryService,

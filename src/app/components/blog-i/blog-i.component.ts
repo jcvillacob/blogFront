@@ -16,15 +16,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./blog-i.component.css']
 })
 export class BlogIComponent implements OnInit {
+  postId: string = '';
   userId: string | null = null;
   userRole: string | null = null;
   isAuthenticated: boolean = false;
   authSubscription: Subscription = new Subscription(); // Inicializa la propiedad con un valor predeterminado
   post: Post | null = null;
   comments: Comment[] = [];  // Añade esta propiedad al inicio de la clase
-  newComment: Comment = {
-    content: ''
-  };
+  newComment: Comment = { content: '' };
 
   constructor(
     private router: Router,
@@ -37,11 +36,11 @@ export class BlogIComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
     this.userRole = this.authService.getUserRole();
-    const postId = this.route.snapshot.params['id'];
-    this.postService.getPost(postId).subscribe(post => {
+    this.postId = this.route.snapshot.params['id'];
+    this.postService.getPost(this.postId).subscribe(post => {
       this.post = post;
     });
-    this.commentService.getComments(postId).subscribe(comments => {
+    this.commentService.getComments(this.postId).subscribe(comments => {
       this.comments = comments;
     });
     this.authSubscription = this.authService.isAuthenticated$.subscribe(
@@ -58,29 +57,36 @@ export class BlogIComponent implements OnInit {
     }
     if (this.post) {
       this.newComment.post = this.route.snapshot.params['id'];
+      this.newComment.content = this.parseContent(this.newComment.content);
       this.commentService.createComment(this.newComment).subscribe((comment) => {
         this.comments.push(comment);
         this.newComment = {
           content: ''
         };
-        window.location.reload(); // recarga la página después de agregar el comentario
+        this.commentService.getComments(this.postId).subscribe(comments => {
+          this.comments = comments;
+        });
       });
     }
   }
 
   editComment(comment: Comment): void {
     comment.editing = true;
+    comment.content = this.reverseParseContent(comment.content);
   }
 
   updateComment(comment: Comment): void {
     if (comment._id) { // Agrega esta línea para verificar si comment._id está definido
       comment.editing = false;
+      comment.content = this.parseContent(comment.content);
       this.commentService.updateComment(comment._id, comment).subscribe((updatedComment) => {
         const index = this.comments.findIndex((c) => c._id === updatedComment._id);
         if (index !== -1) {
           this.comments[index] = updatedComment;
         }
-        window.location.reload();
+        this.commentService.getComments(this.postId).subscribe(comments => {
+          this.comments = comments;
+        });
       });
     } else {
       console.error('Error: El ID del comentario no está definido.');
@@ -89,6 +95,7 @@ export class BlogIComponent implements OnInit {
 
   cancelEdit(comment: Comment): void {
     comment.editing = false;
+    comment.content = this.parseContent(comment.content);
   }
 
   deleteComment(id: any): void {
@@ -103,7 +110,11 @@ export class BlogIComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.commentService.deleteComment(id).subscribe({
-          next: () => { window.location.reload(); },
+          next: () => {
+            this.commentService.getComments(this.postId).subscribe(comments => {
+              this.comments = comments;
+            });
+          },
           error: (error) => {
             console.error('Error al eliminar el comentario:', error);
           }
@@ -111,4 +122,17 @@ export class BlogIComponent implements OnInit {
       }
     });
   }
+
+  parseContent(content: string): string {
+    return content.replace(/\n/g, '<br>');
+  }
+
+  reverseParseContent(content: string): string {
+    return content.replace(/<br\s*\/?>/gm, '\n');
+  }
+
+  goBack(): void {
+    this.router.navigate(['/blogs']);
+  }
+
 }

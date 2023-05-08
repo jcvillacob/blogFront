@@ -24,7 +24,7 @@ h2 {
 }
 
 .arrow {
-    transition: transform 0.3s;
+    transition: transform 0.5s;
 }
 
 .rotated {
@@ -38,4 +38,23 @@ h2 {
     border-radius: 5px;
     padding: 1em;
     margin-bottom: 1em;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .faq-container {
+        max-width: 90%;
+    }
+
+    .arrow {
+        margin-left: 1rem;
+    }
+}
+
+
+
+
+/* Estilos para pantallas muy pequeñas */
+@media (max-width: 480px) {
+
 }
