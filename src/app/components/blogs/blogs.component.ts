@@ -19,6 +19,7 @@ export class BlogsComponent implements OnInit {
   searchTitle: string = '';
   selectedAuthor: string = '';
   selectedCategory: string = '';
+  loader: boolean = true;
 
   constructor(
     private postService: PostService,
@@ -42,6 +43,7 @@ export class BlogsComponent implements OnInit {
       this.categoryService.getCategories().subscribe(categories => {
         this.categories = categories.filter(category => categoryIds.has(category._id));
       });
+      this.loader = false;
     });
   }
 

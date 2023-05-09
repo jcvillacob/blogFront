@@ -1,9 +1,9 @@
 <div class="container">
     <h1>Blogs</h1>
-
+    
     <div class="filters">
         <input [(ngModel)]="searchTitle" (input)="filterPosts()" type="text" placeholder="Título..."
-            class="search-title">
+        class="search-title">
         <select [(ngModel)]="selectedAuthor" (change)="filterPosts()" class="search-author">
             <option value="">Autor...</option>
             <option *ngFor="let author of authors" [value]="author._id">{{author.name}}</option>
@@ -14,7 +14,11 @@
         </select>
     </div>
 
-    <div class="posts">
+    <div class="rowloader" *ngIf="loader">
+        <span class="loader"></span>
+    </div>
+    
+    <div class="posts" *ngIf="!loader">
         <div *ngFor="let post of filteredPosts" class="post">
             <div class="post-header">
                 <h2>{{post.title}}</h2>
@@ -26,7 +30,7 @@
                     <span class="post-author">{{post.author.name}}</span>
                     <span class="post-category">{{post.category.name}}</span>
                 </div>
-                <a [routerLink]="['/blog-i', post._id]" class="view-post">Ver post</a>
+                <a [routerLink]="['/blog-i', post._id]" class="view-post">Leer más...</a>
             </div>
             <p class="post-date">{{post.createdAt | date:'dd-MMMM-yyyy'}}</p>
         </div>

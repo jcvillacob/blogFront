@@ -25,6 +25,7 @@ h2 {
 
 .arrow {
     transition: transform 0.5s;
+    color: #1a2a4e;
 }
 
 .rotated {
@@ -45,14 +46,10 @@ h2 {
     .faq-container {
         max-width: 90%;
     }
-
     .arrow {
         margin-left: 1rem;
     }
 }
-
-
-
 
 /* Estilos para pantallas muy pequeñas */
 @media (max-width: 480px) {

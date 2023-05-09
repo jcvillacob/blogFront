@@ -10,7 +10,7 @@
 
 h2 {
     font-size: 2.5rem;
-    color: #007bff;
+    color: #1a2a4e;
     margin-bottom: 1rem;
 }
 
@@ -56,7 +56,7 @@ textarea {
 input:focus,
 textarea:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #1a2a4e;
 }
 
 textarea {
@@ -68,7 +68,7 @@ button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     color: #fff;
-    background-color: #007bff;
+    background-color: #1a2a4e;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -83,7 +83,7 @@ button i {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #1a2a4ed5;
 }
 
 .social-media {
@@ -94,7 +94,7 @@ button:hover {
 }
 
 .icon {
-    color: #007bff;
+    color: #1a2a4e;
     margin: 0 1rem;
     font-size: 2rem;
     text-decoration: none;

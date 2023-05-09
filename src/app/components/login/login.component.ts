@@ -1,20 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { UserService } from 'src/app/services/user.service';
+import { User, UserRole } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-
+export class LoginComponent implements OnInit {
   emailValue: string = '';
   passwordValue: string = '';
+  UserRole = UserRole;
+  commenter = 'commenter';
+  author = 'author';
+  nameValue: string = ''; // Agregue esta línea para almacenar el valor del campo Nombre
+  roleValue: UserRole = UserRole.Commenter; // Agregue esta línea para almacenar el valor del campo Rol
+  isRegistering: boolean = false; // Agregue esta línea para almacenar el estado del registro
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, 
+    private router: Router,
+    private userService: UserService) { }
 
+
+  ngOnInit(): void {
+      
+  }
+  
   onSubmit() {
     if (!this.emailValue || !this.passwordValue) {
       Swal.fire({
@@ -46,14 +60,26 @@ export class LoginComponent {
       return;
     }
 
-    this.authService.login({ email: this.emailValue, password: this.passwordValue }).subscribe(() => {
-      this.router.navigate(['/']);
-    }, (error) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error en el inicio de sesión',
-        text: error.error.message || 'Hubo un problema al iniciar sesión. Inténtalo de nuevo más tarde.',
+    if (this.isRegistering){
+      const nuevoUsuario: User = {name:this.nameValue, email: this.emailValue, password: this.passwordValue, role: this.roleValue };
+      this.userService.createUser(nuevoUsuario).subscribe(usuario => {
+        Swal.fire({
+          icon: 'success',
+          title: `Se ha Registado el usuario ${usuario.name} con éxito!`,
+          text: "Recuerda que debes verificar tu cuenta"
+        }).then(() => { this.router.navigate(['/']) });
+      }); 
+    } else {
+      this.authService.login({ email: this.emailValue, password: this.passwordValue }).subscribe(() => {
+        this.router.navigate(['/']);
+      }, (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error en el inicio de sesión',
+          text: error.error.message || 'Hubo un problema al iniciar sesión. Inténtalo de nuevo más tarde.',
+        });
       });
-    });
+    };
   }
+
 }

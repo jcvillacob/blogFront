@@ -1,4 +1,8 @@
-<div class="container" *ngIf="post">
+<div class="rowloader" *ngIf="loader">
+  <span class="loader"></span>
+</div>
+
+<div class="container" *ngIf="post && !loader">
 
   <button class="back-button" (click)="goBack()">
     <i class="fa fa-arrow-left"></i>
@@ -38,7 +42,7 @@
 </div>
 
 <!-- Añade este código al final del archivo -->
-<div class="comments-section" *ngIf="comments.length > 0">
+<div class="comments-section" *ngIf="comments.length > 0 && !loader">
   <h2>Comentarios</h2>
   <div class="comment" *ngFor="let comment of comments">
     <div class="comment-header">
@@ -86,7 +90,7 @@
 </div>
 
 
-<div class="new-comment-form">
+<div class="new-comment-form" *ngIf="!loader">
   <h2>Deja un comentario</h2>
   <form (ngSubmit)="submitComment()" #commentForm="ngForm">
     <textarea

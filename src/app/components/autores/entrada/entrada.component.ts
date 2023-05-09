@@ -12,13 +12,16 @@ import Swal from 'sweetalert2';
   templateUrl: './entrada.component.html',
   styleUrls: ['./entrada.component.css']
 })
+
 export class EntradaComponent implements OnInit {
   postForm: FormGroup;
   entryType: string = '';
   editingPostId: string | undefined = undefined;
   categories: Category[] = [];
+  loader: boolean = true;
 
-  constructor(private fb: FormBuilder, private router: Router,
+  constructor(private fb: FormBuilder, 
+    private router: Router,
     private categoryService: CategoryService,
     private postService: PostService,
     private route: ActivatedRoute) {
@@ -33,25 +36,27 @@ export class EntradaComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(categories => {
       this.categories = categories;
+      this.route.queryParams.subscribe(params => {
+        const postId = params['postId'];
+        this.entryType = params['entrada'];
+        if (postId) {
+          this.postService.getPost(postId).subscribe(post => {
+            post.content = this.reverseParseContent(post.content);
+            this.loadPostData(post);
+            const textarea = document.getElementById('content') as HTMLTextAreaElement;
+            if (textarea) {
+              textarea.style.height = 'auto';
+              textarea.style.height = `${textarea.scrollHeight}px`;
+            }
+          }, error => {
+            console.error(error);
+            this.router.navigateByUrl('/autores');
+          });
+        }
+      });
+      this.loader = false;
     });
-    this.route.queryParams.subscribe(params => {
-      const postId = params['postId'];
-      this.entryType = params['entrada'];
-      if (postId) {
-        this.postService.getPost(postId).subscribe(post => {
-          post.content = this.reverseParseContent(post.content);
-          this.loadPostData(post);
-          const textarea = document.getElementById('content') as HTMLTextAreaElement;
-          if (textarea) {
-            textarea.style.height = 'auto';
-            textarea.style.height = `${textarea.scrollHeight}px`;
-          }
-        }, error => {
-          console.error(error);
-          this.router.navigateByUrl('/autores');
-        });
-      }
-    });
+    
   }
 
   get tags(): FormArray {
@@ -153,6 +158,5 @@ export class EntradaComponent implements OnInit {
   reverseParseContent(content: string): string {
     return content.replace(/<br\s*\/?>/gm, '\n');
   }
-
 }
 

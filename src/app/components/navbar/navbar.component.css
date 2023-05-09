@@ -84,6 +84,10 @@ nav {
   /* Añade un nuevo estilo para los elementos li */
 }
 
+.nav-item.boton {
+  margin-top: -9px;
+}
+
 .navbar ul {
   list-style: none;
   display: grid;

@@ -1,4 +1,9 @@
-<div class="content">
+<div class="rowloader" *ngIf="loader">
+  <span class="loader"></span>
+</div>
+<div class="content" *ngIf="!loader">
+  <!-- SPINNER  -->
+
   <div class="header">
     <button class="back-button" (click)="goBack()">
       <i class="fa fa-arrow-left"></i> Retroceder

@@ -17,10 +17,10 @@
             <li class="nav-item" *ngIf="isAuthenticated && (userRole === 'Admin' || userRole === 'author')">
                 <a href="autores">Autores</a>
               </li>
-            <li class="nav-item" *ngIf="!isAuthenticated">
+            <li class="nav-item boton" *ngIf="!isAuthenticated">
                 <button class="login-btn"><a href="login">Iniciar sesión</a></button>
             </li>
-            <li class="nav-item" *ngIf="isAuthenticated">
+            <li class="nav-item boton" *ngIf="isAuthenticated">
                 <button class="login-btn" (click)="logout()"><a>Cerrar sesión</a></button>
             </li>
         </ul>

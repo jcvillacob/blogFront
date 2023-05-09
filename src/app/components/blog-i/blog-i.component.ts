@@ -24,6 +24,7 @@ export class BlogIComponent implements OnInit {
   post: Post | null = null;
   comments: Comment[] = [];  // Añade esta propiedad al inicio de la clase
   newComment: Comment = { content: '' };
+  loader: boolean = true;
 
   constructor(
     private router: Router,
@@ -37,15 +38,16 @@ export class BlogIComponent implements OnInit {
     this.userId = this.authService.getUserId();
     this.userRole = this.authService.getUserRole();
     this.postId = this.route.snapshot.params['id'];
-    this.postService.getPost(this.postId).subscribe(post => {
-      this.post = post;
-    });
-    this.commentService.getComments(this.postId).subscribe(comments => {
-      this.comments = comments;
-    });
     this.authSubscription = this.authService.isAuthenticated$.subscribe(
       isAuthenticated => {
         this.isAuthenticated = isAuthenticated;
+        this.postService.getPost(this.postId).subscribe(post => {
+          this.post = post;
+          this.commentService.getComments(this.postId).subscribe(comments => {
+            this.comments = comments;
+            this.loader = false;
+          });
+        });
       }
     );
   }

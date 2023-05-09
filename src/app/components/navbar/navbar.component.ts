@@ -21,8 +21,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.updateUserRole();
 
-    this.authSubscription = this.authService.isAuthenticated$.subscribe(
-      isAuthenticated => {
+    this.authSubscription = this.authService.isAuthenticated$.subscribe(isAuthenticated => {
         this.isAuthenticated = isAuthenticated;
         this.updateUserRole();
       }

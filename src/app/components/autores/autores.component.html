@@ -1,20 +1,179 @@
 <div class="container">
-  <h2>Autores</h2>
-  <button (click)="crearNuevaEntrada()" class="btn btn-primary mb-4">
-    Crear nueva entrada
-  </button>
+  <!-- Modal para mostrar categorías -->
+  <div class="modal fade" id="categoriesModal" tabindex="-1" aria-labelledby="categoriesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="categoriesModalLabel">Mis categorías</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group mb-3">
+            <li *ngFor="let categoria of categorias; index as i"
+              class="list-group-item d-flex justify-content-between align-items-center">
+              {{ categoria.name }}
+              <span class="botonesCateg">
+                <button (click)="editarCategoria(categoria ?? '')" class="btn btn-custom-success me-2">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button (click)="eliminarCategoria(categoria._id ?? '')" class="btn btn-custom-danger">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </span>
+            </li>
+          </ul>
+          <form (submit)="agregarCategoria(nuevaCategoria.value)">
+            <div class="input-group mb-3">
+              <input #nuevaCategoria type="text" class="form-control" placeholder="Nueva categoría" />
+              <button type="submit" class="btn btn-primary">
+                Añadir nueva
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <h3>Mis Noticias</h3>
+  <!-- Modal para editar Usuarios -->
+  <div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarUsuarioModalLabel">
+            Editar Usuario
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (submit)="actualizarUsuario()">
+            <!-- Agrega los campos del formulario aquí -->
+            <div class="mb-3">
+              <input [(ngModel)]="usuarioEditado.name" name="nombre" type="text" class="form-control"
+                placeholder="Nombre" required />
+            </div>
+            <div class="mb-3">
+              <input [(ngModel)]="usuarioEditado.email" name="email" type="email" class="form-control"
+                placeholder="Email" required />
+            </div>
+            <div class="mb-3">
+              <input [(ngModel)]="usuarioEditado.password" name="password" type="password" class="form-control"
+                placeholder="Contraseña (opcional)" />
+            </div>
+            <div class="mb-3">
+              <select [(ngModel)]="usuarioEditado.role" name="role" class="form-select" required>
+                <option [ngValue]="null" disabled selected>
+                  Seleccione un rol
+                </option>
+                <option [ngValue]="UserRole.Author">
+                  {{ UserRole.Author }}
+                </option>
+                <option [ngValue]="UserRole.Commenter">
+                  {{ UserRole.Commenter }}
+                </option>
+                <option [ngValue]="UserRole.Admin">{{ UserRole.Admin }}</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+              Actualizar usuario
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para mostrar Usuarios -->
+  <div class="modal fade" id="usuariosModal" tabindex="-1" aria-labelledby="categoriesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="categoriesModalLabel">Usuarios</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group mb-3">
+            <li *ngFor="let usuario of usuarios"
+              class="list-group-item d-flex justify-content-between align-items-center">
+              {{ usuario.email }}
+              <span class="botonesCateg">
+                <button (click)="editarUsuario(usuario)" class="btn btn-custom-success me-2"
+                  data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button (click)="eliminarUsuario(usuario._id ?? '')" class="btn btn-custom-danger">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </span>
+            </li>
+          </ul>
+          <button (click)="mostrarFormularioUsuario()" class="btn btn-primary mb-3">
+            Añadir nuevo
+          </button>
+
+          <div #usuarioForm class="usuario-form d-none">
+            <form (submit)="agregarUsuario()">
+              <div class="mb-3">
+                <input [(ngModel)]="nuevoUsuario.name" name="nombre" type="text" class="form-control"
+                  placeholder="Nombre" required />
+              </div>
+              <div class="mb-3">
+                <input [(ngModel)]="nuevoUsuario.email" name="email" type="email" class="form-control"
+                  placeholder="Email" required />
+              </div>
+              <div class="mb-3">
+                <input [(ngModel)]="nuevoUsuario.password" name="password" type="password" class="form-control"
+                  placeholder="Contraseña" required />
+              </div>
+              <div class="mb-3">
+                <select [(ngModel)]="nuevoUsuario.role" name="role" class="form-select" required>
+                  <option [ngValue]="UserRole.Commenter" disabled selected>Seleccione un rol</option>
+                  <option [ngValue]="UserRole.Author">{{ UserRole.Author }}</option>
+                  <option [ngValue]="UserRole.Commenter">{{ UserRole.Commenter }}</option>
+                  <option [ngValue]="UserRole.Admin">{{ UserRole.Admin }}</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Añadir usuario
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1>Autores</h1>
+  <div class="botones">
+    <button (click)="crearNuevaEntrada()" class="btn btn-primary mb-4">
+      Nueva entrada
+    </button>
+    <button (click)="mostrarUsuarios()" class="btn btn-primary mb-4" *ngIf="userRole === 'Admin'">
+      Usuarios
+    </button>
+    <button (click)="mostrarCategorias()" class="btn btn-primary mb-4" *ngIf="userRole === 'Admin'">
+      Categorías
+    </button>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-6 mt-2">
+      <h3 class="mb-4">Mis Noticias</h3>
+
+      <!-- SPINNER  -->
+      <div class="rowloader" *ngIf="loader">
+        <span class="loader"></span>
+      </div>
+
       <div *ngFor="let noticia of noticias; index as i">
-        <div class="card mb-3">
+        <div class="card mb-3 shadow" *ngIf="!loader">
           <div class="card-body">
             <h5 class="card-title">{{ noticia.titulo }}</h5>
-            <button (click)="editarNoticia(i)" class="btn btn-success me-2">
+            <button (click)="editarNoticia(i)" class="btn btn-custom-success me-2">
               Editar
             </button>
-            <button (click)="eliminarNoticia(i)" class="btn btn-danger">
+            <button (click)="eliminarNoticia(i)" class="btn btn-custom-danger">
               Eliminar
             </button>
           </div>
@@ -24,8 +183,13 @@
 
     <div class="col-md-6">
       <h3 class="mb-4">Mis Posts</h3>
+      <!-- SPINNER  -->
+      <div class="rowloader" *ngIf="loader">
+        <span class="loader"></span>
+      </div>
+
       <div *ngFor="let post of posts">
-        <div class="card mb-3 shadow">
+        <div class="card mb-3 shadow" *ngIf="!loader">
           <div class="card-body">
             <h3 class="card-title">{{ post.title }}</h3>
             <h5 class="card-title text-muted">{{ post.category.name }}</h5>
@@ -36,16 +200,10 @@
             <p class="card-title text-muted">
               {{ post.createdAt | date : "medium" }}
             </p>
-            <button
-              (click)="editarPost(post._id ?? '')"
-              class="btn btn-custom-success me-2"
-            >
+            <button (click)="editarPost(post._id ?? '')" class="btn btn-custom-success me-2">
               Editar
             </button>
-            <button
-              (click)="eliminarPost(post._id ?? '')"
-              class="btn btn-custom-danger"
-            >
+            <button (click)="eliminarPost(post._id ?? '')" class="btn btn-custom-danger">
               Eliminar
             </button>
           </div>
