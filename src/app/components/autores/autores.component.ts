@@ -229,6 +229,7 @@ export class AutoresComponent implements OnInit {
   actualizarUsuario() {
     this.usuarioEditado.verified = true;
     this.userService.updateUser(this.usuarioEditado.id, this.usuarioEditado).subscribe(() => {
+      this.usuarioEditado.password = '';
       this.userService.getUsers().subscribe(usuarios => {
         this.usuarios = usuarios;
         Swal.fire({

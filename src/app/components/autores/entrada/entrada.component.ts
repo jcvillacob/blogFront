@@ -20,13 +20,14 @@ export class EntradaComponent implements OnInit {
   categories: Category[] = [];
   loader: boolean = true;
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: FormBuilder,
     private router: Router,
     private categoryService: CategoryService,
     private postService: PostService,
     private route: ActivatedRoute) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
+      image: [null, Validators.required],
       content: ['', Validators.required],
       category: ['', Validators.required],
       tags: this.fb.array([])
@@ -56,7 +57,7 @@ export class EntradaComponent implements OnInit {
       });
       this.loader = false;
     });
-    
+
   }
 
   get tags(): FormArray {
@@ -157,6 +158,15 @@ export class EntradaComponent implements OnInit {
 
   reverseParseContent(content: string): string {
     return content.replace(/<br\s*\/?>/gm, '\n');
+  }
+
+  handleFileInput(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.postForm.patchValue({ image: reader.result });
+    };
+    reader.readAsDataURL(file);
   }
 }
 

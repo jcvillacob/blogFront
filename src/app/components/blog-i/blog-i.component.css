@@ -344,8 +344,11 @@ div a {
     background-color: #d32f2f;
 }
 
-
-
+img {
+    width: 90%;
+    height: auto;
+    margin-bottom: 3rem;
+}
 
 
 
@@ -442,5 +445,10 @@ div a {
 
     .new-comment-form textarea {
         height: 60px;
+    }
+
+    img {
+        width: 100%;
+        margin-bottom: 2rem;
     }
 }

@@ -1,9 +1,8 @@
+<!-- SPINNER  -->
 <div class="rowloader" *ngIf="loader">
   <span class="loader"></span>
 </div>
 <div class="content" *ngIf="!loader">
-  <!-- SPINNER  -->
-
   <div class="header">
     <button class="back-button" (click)="goBack()">
       <i class="fa fa-arrow-left"></i> Retroceder
@@ -22,12 +21,13 @@
     </div>
 
     <div>
+      <label for="image"><i class="fa fa-image"></i> Imagen</label>
+      <input type="file" id="image" (change)="handleFileInput($event)" />
+    </div>
+
+    <div>
       <label for="content"><i class="fa fa-pencil-alt"></i> Contenido</label>
-      <textarea
-        id="content"
-        formControlName="content"
-        (input)="adjustTextareaHeight($event)"
-      ></textarea>
+      <textarea id="content" formControlName="content" (input)="adjustTextareaHeight($event)"></textarea>
     </div>
 
     <div>

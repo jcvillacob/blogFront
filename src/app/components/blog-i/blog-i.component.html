@@ -16,10 +16,13 @@
         <span class="post-tags">{{ post.tags.join(", ") }}</span>
       </div>
     </div>
-
+    
     <div class="post-author">
       <span>Por {{ post.author.name }}</span>
     </div>
+
+    <img *ngIf="post.image" [src]="post.image" alt="Imagen del Post">
+    
     <div class="post-content">
       <p [innerHTML]="post.content"></p>
     </div>

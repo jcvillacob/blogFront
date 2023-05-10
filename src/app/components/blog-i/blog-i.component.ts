@@ -43,6 +43,7 @@ export class BlogIComponent implements OnInit {
         this.isAuthenticated = isAuthenticated;
         this.postService.getPost(this.postId).subscribe(post => {
           this.post = post;
+          console.log(post);
           this.commentService.getComments(this.postId).subscribe(comments => {
             this.comments = comments;
             this.loader = false;
