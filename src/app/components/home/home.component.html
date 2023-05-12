@@ -1,22 +1,30 @@
 <div class="container">
     <h1 class="title">Blog de Tecnología</h1>
-    <p class="intro">En el mundo actual, la tecnología es uno de los motores más importantes de la innovación y el
-        progreso en todas las industrias. Mantenerse al frente de las tendencias tecnológicas es esencial para cualquier
-        empresa o profesional que busque tener éxito en un mercado cada vez más competitivo.</p>
-    <p class="intro">Desde la inteligencia artificial y el aprendizaje automático hasta la robótica y la realidad virtual, las
-        últimas tendencias tecnológicas están transformando la forma en que hacemos negocios. No quedarse atrás en la
-        adopción de estas tecnologías puede marcar la diferencia entre el éxito y el fracaso de una empresa, así como en
-        el avance de la carrera profesional de un individuo. Por lo tanto, es importante estar informado y actualizado
-        sobre las últimas tendencias para mantenerse al frente de la competencia.</p>
+    <p class="intro">En el mundo actual, la tecnología se ha convertido en uno de los principales motores de innovación
+        y progreso en todas las industrias, siendo crucial para cualquier empresa o profesional que busque tener éxito
+        en un mercado cada vez más competitivo. Desde la inteligencia artificial y el aprendizaje automático hasta la
+        robótica y la realidad virtual, las últimas tendencias tecnológicas están transformando la forma en que hacemos
+        negocios, y no quedarse atrás en la adopción de estas tecnologías puede marcar la diferencia entre el éxito y el
+        fracaso de una empresa.</p>
+    <p class="intro">Asimismo, el avance en la carrera profesional de un individuo también se ve impactado por su
+        capacidad para mantenerse informado y actualizado sobre estas tendencias. Por lo tanto, es de vital importancia
+        estar al tanto de los últimos desarrollos y cambios en el panorama tecnológico, ya que esto permitirá a las
+        empresas y profesionales adaptarse rápidamente a las nuevas demandas del mercado y mantenerse al frente de la
+        competencia, asegurando así un futuro próspero y sostenible en sus respectivos campos.</p>
 
     <section id="featured">
-        <h2>Artículos destacados</h2>
-        <div class="articles">
-            <div *ngFor="let article of featuredArticles" class="article-card">
-                <img [src]="article.image" alt="{{ article.title }}" />
-                <h3>{{ article.title }}</h3>
-                <p>{{ article.summary }}</p>
-                <a [href]="article.link">Leer más</a>
+        <h2>Posts destacados</h2>
+        <!-- SPINNER -->
+        <div class="rowloader" *ngIf="loader">
+            <span class="loader"></span>
+        </div>
+
+        <div class="articles" *ngIf="!loader">
+            <div *ngFor="let post of randomPosts" class="article-card">
+                <img [src]="post.image" alt="{{ post.title }}" />
+                <h3>{{ post.title }}</h3>
+                <p [innerHTML]="post.content.substring(0, 50) + (post.content.length > 150 ? '...' : '')"></p>
+                <a [href]="">Leer más</a>
             </div>
         </div>
     </section>
@@ -33,20 +41,34 @@
     </section>
 
     <section id="recommended-blogs">
-        <h2>Blogs recomendados</h2>
+        <h2>Noticias recomendadas</h2>
         <div class="blogs">
-            <div *ngFor="let blog of recommendedBlogs" class="blog-card">
-                <h3>{{ blog.title }}</h3>
-                <a [href]="blog.link">Visitar blog</a>
+            <div *ngFor="let new of recommendedNews" class="blog-card">
+                <h3>{{ new.title }}</h3>
+                <a [href]="new.link">Visitar noticia</a>
             </div>
         </div>
     </section>
 
     <section id="about">
         <h2>Sobre nosotros</h2>
-        <p>
-            Somos un equipo de apasionados por la tecnología que busca informar y educar a nuestros lectores sobre los
-            últimos avances y tendencias en el mundo digital.
+        <p class="nosotros">
+            Somos un equipo de entusiastas apasionados por la tecnología, comprometidos en informar y educar a nuestros
+            lectores sobre los últimos avances y tendencias en el mundo digital. Nuestra misión es estar siempre a la
+            vanguardia, investigando y analizando las innovaciones tecnológicas que impactan nuestra vida diaria y el
+            futuro.
+            <br>
+            <br>
+            Nos enfocamos en ofrecer contenido relevante, actualizado y fácil de entender, abordando temas como
+            inteligencia artificial, robótica, ciberseguridad, realidad virtual y aumentada, dispositivos móviles y más.
+            Nuestro objetivo es que nuestros lectores adquieran conocimientos y se mantengan informados en un mundo en
+            constante evolución.
+            <br>
+            <br>
+            Además, nos dedicamos a fomentar la educación y la cultura digital, proporcionando recursos y herramientas
+            que permitan a nuestra audiencia desarrollar habilidades en el ámbito tecnológico. A través de tutoriales,
+            guías y entrevistas con expertos, buscamos empoderar a nuestros lectores para que tomen decisiones
+            informadas y aprovechen al máximo las oportunidades que ofrece la tecnología.
         </p>
     </section>
 </div>

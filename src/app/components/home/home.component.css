@@ -1,3 +1,45 @@
+/* SPINNER */
+.rowloader {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 4px solid #1a2a4e;
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border-bottom: 4px solid #FF3D00;
+    border-left: 4px solid transparent;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 /* General styles */
 body {
     font-family: 'Roboto', sans-serif;
@@ -58,6 +100,10 @@ section h2 {
     transition: all 0.3s;
 }
 
+.article-card img {
+    transition: all 0.3s;
+}
+
 .article-card:hover,
 .blogger-card:hover,
 .blog-card:hover {
@@ -71,6 +117,10 @@ section h2 {
     height: auto;
     border-radius: 5px;
     margin-bottom: 1rem;
+}
+
+.article-card:hover img {
+    scale: 1.1;
 }
 
 .article-card h3,
@@ -105,4 +155,12 @@ section h2 {
 .blogger-card a:hover,
 .blog-card a:hover {
     background-color: #2980b9;
+}
+
+#about h2{
+    margin-bottom: 2rem;
+}
+
+.nosotros {
+    font-size: 1.1rem;
 }

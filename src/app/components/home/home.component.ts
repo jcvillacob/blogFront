@@ -1,5 +1,7 @@
 import { Token } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Post } from 'src/app/models/post.model';
+import { PostService } from 'src/app/services/post.service';
 
 interface Article {
   title: string;
@@ -25,45 +27,9 @@ interface Blog {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  featuredArticles: Article[] = [
-    {
-      title: 'La importancia de la inteligencia artificial',
-      summary: 'La inteligencia artificial está revolucionando el mundo en el que vivimos...',
-      image: 'https://th.bing.com/th/id/OIG.tgBhwJjDuIKmGWbhLG1f?pid=ImgGn',
-      link: 'https://example.com/articles/ai'
-    },
-    {
-      title: 'La evolución de los smartphones',
-      summary: 'Los smartphones han cambiado la forma en que nos comunicamos...',
-      image: 'https://th.bing.com/th/id/OIG.ceVkpq.qNgFTN02PJibY?pid=ImgGn',
-      link: 'https://example.com/articles/smartphones'
-    },
-    {
-      title: 'La evolución de los smartphones',
-      summary: 'Los smartphones han cambiado la forma en que nos comunicamos...',
-      image: 'https://th.bing.com/th/id/OIG.ceVkpq.qNgFTN02PJibY?pid=ImgGn',
-      link: 'https://example.com/articles/smartphones'
-    },
-    {
-      title: 'La evolución de los smartphones',
-      summary: 'Los smartphones han cambiado la forma en que nos comunicamos...',
-      image: 'https://th.bing.com/th/id/OIG.tgBhwJjDuIKmGWbhLG1f?pid=ImgGn',
-      link: 'https://example.com/articles/smartphones'
-    },
-    {
-      title: 'La evolución de los smartphones',
-      summary: 'Los smartphones han cambiado la forma en que nos comunicamos...',
-      image: 'https://th.bing.com/th/id/OIG.tgBhwJjDuIKmGWbhLG1f?pid=ImgGn',
-      link: 'https://example.com/articles/smartphones'
-    },
-    {
-      title: 'La evolución de los smartphones',
-      summary: 'Los smartphones han cambiado la forma en que nos comunicamos...',
-      image: 'https://th.bing.com/th/id/OIG.ceVkpq.qNgFTN02PJibY?pid=ImgGn',
-      link: 'https://example.com/articles/smartphones'
-    },
-    // Más artículos destacados aquí
-  ];
+  posts: Post[] = [];
+  randomPosts: Post[] = [];
+  loader: boolean = true;
 
   topBloggers: Blogger[] = [
     {
@@ -83,7 +49,7 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  recommendedBlogs: Blog[] = [
+  recommendedNews: Blog[] = [
     {
       title: 'TechCrunch',
       link: 'https://techcrunch.com/'
@@ -95,25 +61,21 @@ export class HomeComponent implements OnInit {
     {
       title: 'The Verge',
       link: 'https://www.theverge.com/'
-    },
-    {
-      title: 'The Verge',
-      link: 'https://www.theverge.com/'
-    },
-    {
-      title: 'The Verge',
-      link: 'https://www.theverge.com/'
-    },
-    {
-      title: 'The Verge',
-      link: 'https://www.theverge.com/'
-    },
-    // Más blogs recomendados aquí
+    }
   ];
 
-  constructor() { }
+  constructor(private postService: PostService) { }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem("token"));
+    this.postService.getPosts().subscribe(posts => {
+      this.posts = posts;
+      this.randomPosts = this.selectRandomPosts(3);
+      this.loader = false;
+    });
+  }
+
+  selectRandomPosts(count: number): Post[] {
+    const shuffledPosts = this.posts.slice().sort(() => 0.5 - Math.random());
+    return shuffledPosts.slice(0, count);
   }
 }

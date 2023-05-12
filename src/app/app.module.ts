@@ -24,6 +24,7 @@ import { AuthService } from './services/auth.service';
 import { AutoresComponent } from './components/autores/autores.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { EntradaComponent } from './components/autores/entrada/entrada.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EntradaComponent } from './components/autores/entrada/entrada.component
     ContactoComponent,
     LoginComponent,
     AutoresComponent,
-    EntradaComponent
+    EntradaComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
